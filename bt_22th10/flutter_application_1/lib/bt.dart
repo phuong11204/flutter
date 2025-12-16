@@ -5,14 +5,20 @@ class bt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final bool isDesktop = size.width > 900;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /// ICON TRÊN CÙNG
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: const [
@@ -23,6 +29,8 @@ class bt extends StatelessWidget {
               ),
 
               const SizedBox(height: 25),
+
+              /// TEXT WELCOME
               const Text(
                 "Welcome,",
                 style: TextStyle(
@@ -38,6 +46,8 @@ class bt extends StatelessWidget {
               ),
 
               const SizedBox(height: 25),
+
+              /// SEARCH
               TextField(
                 decoration: InputDecoration(
                   hintText: "Search",
@@ -49,7 +59,9 @@ class bt extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 105),
+
+              /// TITLE
               const Text(
                 "Saved Places",
                 style: TextStyle(
@@ -59,16 +71,23 @@ class bt extends StatelessWidget {
               ),
 
               const SizedBox(height: 15),
+
+              /// GRID
               Expanded(
                 child: GridView.count(
-                  crossAxisCount: 2,
+                  crossAxisCount: isDesktop ? 4 : 2,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
+                  childAspectRatio: isDesktop ? 1.4 : 1,
                   children: const [
                     PlaceCard("assets/images/anh1.jpg"),
                     PlaceCard("assets/images/anh2.jpg"),
                     PlaceCard("assets/images/anh3.jpg"),
                     PlaceCard("assets/images/anh4.jpg"),
+                    PlaceCard("assets/images/anh4.jpg"),
+                    PlaceCard("assets/images/anh3.jpg"),
+                    PlaceCard("assets/images/anh2.jpg"),
+                    PlaceCard("assets/images/anh1.jpg"),
                   ],
                 ),
               ),
@@ -80,6 +99,7 @@ class bt extends StatelessWidget {
   }
 }
 
+/// ================= PLACE CARD =================
 class PlaceCard extends StatelessWidget {
   final String imageUrl;
   const PlaceCard(this.imageUrl, {super.key});
@@ -91,6 +111,17 @@ class PlaceCard extends StatelessWidget {
       child: Image.asset(
         imageUrl,
         fit: BoxFit.cover,
+        width: double.infinity,
+        height: double.infinity,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            color: Colors.grey.shade300,
+            child: const Icon(
+              Icons.image_not_supported,
+              size: 40,
+            ),
+          );
+        },
       ),
     );
   }

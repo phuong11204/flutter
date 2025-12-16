@@ -5,225 +5,156 @@ class ClassroomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, String>> classes = [
+      {
+        "title": "XML và ứng dụng - Nhóm 1",
+        "code": "2025-2026.1.TIN4583.001",
+        "students": "58 học viên",
+        "image": "assets/images/anh1.jpg",
+      },
+      {
+        "title": "Lập trình ứng dụng cho các thiết bị di động",
+        "code": "2025-2026.1.TIN4403.006",
+        "students": "55 học viên",
+        "image": "assets/images/anh2.jpg",
+      },
+      {
+        "title": "Lập trình ứng dụng cho các thiết bị di động",
+        "code": "2025-2026.1.TIN4403.005",
+        "students": "52 học viên",
+        "image": "assets/images/anh3.jpg",
+      },
+      {
+        "title": "Lập trình ứng dụng cho các thiết bị di động",
+        "code": "2025-2026.1.TIN4403.004",
+        "students": "50 học viên",
+        "image": "assets/images/anh4.jpg",
+      },
+      {
+        "title": "Lập trình ứng dụng cho các thiết bị di động",
+        "code": "2025-2026.1.TIN4403.003",
+        "students": "52 học viên",
+        "image": "assets/images/anh5.jpg",
+      },
+    ];
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F2),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              //  BLOCK 1
-              Container(
-                margin: const EdgeInsets.only(bottom: 15),
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.indigo.shade400,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'XML và ứng dụng - Nhóm 1',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '2025-2026.1.TIN4583.001',
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '58 học viên',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: null,
-                      icon: const Icon(Icons.more_vert, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        title: const Text('Danh sách lớp học'),
+        backgroundColor: Colors.deepPurple,
+        centerTitle: true,
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(12),
+        itemCount: classes.length,
+        itemBuilder: (context, index) {
+          final c = classes[index];
 
-              //  BLOCK 2
-              Container(
-                margin: const EdgeInsets.only(bottom: 15),
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey.shade700,
-                  borderRadius: BorderRadius.circular(15),
+          return Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.15),
+                  blurRadius: 6,
+                  offset: const Offset(0, 3),
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Lập trình ứng dụng cho thiết bị di động',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(14),
+              child: Stack(
+                children: [
+                  /// ẢNH NỀN
+                  Image.asset(
+                    c["image"]!,
+                    height: 140,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        height: 140,
+                        color: Colors.grey.shade400,
+                        child: const Center(
+                          child: Icon(
+                            Icons.image_not_supported,
+                            size: 40,
+                            color: Colors.white,
                           ),
-                          SizedBox(height: 4),
-                          Text(
-                            '2025-2026.1.TIN4403.006',
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '55 học viên',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: null,
-                      icon: const Icon(Icons.more_vert, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
+                        ),
+                      );
+                    },
+                  ),
 
-              //  BLOCK 3
-              Container(
-                margin: const EdgeInsets.only(bottom: 15),
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey.shade800,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Lập trình ứng dụng cho thiết bị di động',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '2025-2026.1.TIN4403.005',
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '52 học viên',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                  /// LỚP PHỦ TỐI
+                  Container(
+                    height: 140,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.black.withOpacity(0.6),
+                          Colors.black.withOpacity(0.2),
                         ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
                       ),
                     ),
-                    IconButton(
-                      onPressed: null,
-                      icon: const Icon(Icons.more_vert, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
 
-              //  BLOCK 4
-              Container(
-                margin: const EdgeInsets.only(bottom: 15),
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade600,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Lập trình ứng dụng cho thiết bị di động',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+                  /// NỘI DUNG
+                  Positioned(
+                    left: 16,
+                    right: 16,
+                    bottom: 14,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          c["title"]!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
-                          SizedBox(height: 4),
-                          Text(
-                            '2025-2026.1.TIN4403.004',
-                            style: TextStyle(color: Colors.white70),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          c["code"]!,
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 13,
                           ),
-                          SizedBox(height: 4),
-                          Text(
-                            '50 học viên',
-                            style: TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          c["students"]!,
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 13,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      onPressed: null,
-                      icon: const Icon(Icons.more_vert, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
 
-              //  BLOCK 5
-              Container(
-                margin: const EdgeInsets.only(bottom: 15),
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey.shade900,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Lập trình ứng dụng cho thiết bị di động',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '2025-2026.1.TIN4403.003',
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            '52 học viên',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
+                  /// ICON MENU
+                  const Positioned(
+                    top: 10,
+                    right: 10,
+                    child: Icon(
+                      Icons.more_vert,
+                      color: Colors.white,
                     ),
-                    IconButton(
-                      onPressed: null,
-                      icon: const Icon(Icons.more_vert, color: Colors.white),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

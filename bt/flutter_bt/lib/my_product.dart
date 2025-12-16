@@ -40,6 +40,48 @@ class _MyProductState extends State<MyProduct>
         description: "Giày cao gót nữ.",
         category: "Giày nữ",
         image: "assets/images/anh4.jpg"),
+    Product(
+        id: 5,
+        title: "Giày 5",
+        price: 170000,
+        description: "Giày cao gót nữ.",
+        category: "Giày nữ",
+        image: "assets/images/anh5.jpg"),
+    Product(
+        id: 6,
+        title: "Giày 6",
+        price: 170000,
+        description: "Giày cao gót nữ.",
+        category: "Giày nữ",
+        image: "assets/images/anh6.jpg"),    
+    Product(
+        id: 7,
+        title: "Giày 7",
+        price: 270000,
+        description: "Giày thể thao nam.",
+        category: "Giày nam",
+        image: "assets/images/anh7.jpg"), 
+     Product(
+        id: 8,
+        title: "Giày 8",
+        price: 270000,
+        description: "Giày thể thao nam.",
+        category: "Giày nam",
+        image: "assets/images/anh8.jpg"),  
+       Product(
+        id: 9,
+        title: "Giày 9",
+        price: 270000,
+        description: "Giày thể thao nam.",
+        category: "Giày nam",
+        image: "assets/images/anh9.jpg"),  
+         Product(
+        id: 10,
+        title: "Giày 10",
+        price: 270000,
+        description: "Giày thể thao nam.",
+        category: "Giày nữ",
+        image: "assets/images/anh10.jpg"),        
   ];
 
   final NumberFormat formatCurrency = NumberFormat("#,###", "vi_VN");
@@ -47,8 +89,10 @@ class _MyProductState extends State<MyProduct>
 
   List<Product> filteredList = [];
   List<Map<String, dynamic>> cartList = [];
-
   late TabController tabController;
+
+  // Biến để lưu danh mục đang chọn
+  String selectedCategory = "Tất cả";
 
   @override
   void initState() {
@@ -120,8 +164,45 @@ class _MyProductState extends State<MyProduct>
             child: TabBarView(
               controller: tabController,
               children: [
+                // Trang chủ
                 buildProductGrid(filteredList),
-                buildProductGrid(filteredList),
+                
+                // Danh mục
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: DropdownButton<String>(
+                        value: selectedCategory,
+                        isExpanded: true,
+                        items: ["Tất cả", "Giày nam", "Giày nữ"]
+                            .map((cat) {
+                          return DropdownMenuItem(
+                            value: cat,
+                            child: Text(cat),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectedCategory = value!;
+                          });
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: buildProductGrid(
+                        selectedCategory == "Tất cả"
+                            ? listProduct
+                            : listProduct
+                                .where(
+                                    (p) => p.category == selectedCategory)
+                                .toList(),
+                      ),
+                    ),
+                  ],
+                ),
+                
+                // Giỏ hàng
                 buildCartTab(),
               ],
             ),
@@ -140,7 +221,7 @@ class _MyProductState extends State<MyProduct>
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        childAspectRatio: 0.65,
+        childAspectRatio: 1,
       ),
       itemBuilder: (_, index) => buildProductItem(products[index]),
     );
@@ -167,7 +248,7 @@ class _MyProductState extends State<MyProduct>
                 const BorderRadius.vertical(top: Radius.circular(12)),
             child: Image.asset(
               p.image,
-              height: 130,
+              height: 280,
               width: double.infinity,
               fit: BoxFit.cover,
             ),

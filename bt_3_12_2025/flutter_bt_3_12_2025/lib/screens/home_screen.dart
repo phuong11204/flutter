@@ -66,26 +66,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       ClipRRect(
                         borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                        child: Image.network(
-                          article.urlToImage,
-                          height: 200,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-
-                          // ======================
-                          // ẢNH THAY THẾ (FALLBACK)
-                          // ======================
-                          errorBuilder: (context, error, stackTrace) {
-                            return Image.asset(
-                              "assets/images/fallback.png", 
-                              height: 200,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            );
-                          },
-                        ),
+                        child: (article.urlToImage != null && article.urlToImage!.isNotEmpty)
+                            ? Image.network(
+                                article.urlToImage!,
+                                height: 200,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Image.asset(
+                                    "assets/images/anh11.jpg", 
+                                    height: 200,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  );
+                                },
+                              )
+                            : Image.asset(
+                                "assets/images/anh11.jpg", 
+                                height: 200,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.all(12),
                         child: Column(
