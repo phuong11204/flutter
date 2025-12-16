@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _LoginFormState extends State<LoginForm> {
   final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
 
@@ -50,9 +50,7 @@ class _MyWidgetState extends State<MyWidget> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 30),
-
               // Username
               TextField(
                 controller: userController,
@@ -66,7 +64,6 @@ class _MyWidgetState extends State<MyWidget> {
                   ),
                 ),
               ),
-
               // Dòng lỗi username
               if (errorUser)
                 const Padding(
@@ -79,9 +76,7 @@ class _MyWidgetState extends State<MyWidget> {
                     ),
                   ),
                 ),
-
               const SizedBox(height: 15),
-
               // Password
               TextField(
                 controller: passController,
@@ -91,9 +86,7 @@ class _MyWidgetState extends State<MyWidget> {
                   labelText: "Mật khẩu",
                   suffixIcon: IconButton(
                     icon: Icon(
-                      hidePassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+                      hidePassword ? Icons.visibility_off : Icons.visibility,
                     ),
                     onPressed: () {
                       setState(() {
@@ -108,7 +101,6 @@ class _MyWidgetState extends State<MyWidget> {
                   ),
                 ),
               ),
-
               // Dòng lỗi password
               if (errorPass)
                 const Padding(
@@ -121,9 +113,7 @@ class _MyWidgetState extends State<MyWidget> {
                     ),
                   ),
                 ),
-
               const SizedBox(height: 30),
-
               // Button đăng nhập
               SizedBox(
                 width: 140,

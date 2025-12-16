@@ -14,7 +14,7 @@ import 'bmi.dart'; // bài 9
 import 'feedback_form.dart'; // bài 10
 import 'my_product.dart'; // bài 11
 import 'home_screen.dart'; // bài 12
-import 'form_dangnhap.dart' hide MyWidget; // bài 13
+import 'form_dangnhap.dart'; // bài 13
 
 class DrawerHome extends StatelessWidget {
   const DrawerHome({super.key});
@@ -42,19 +42,19 @@ class DrawerHome extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
-                  _item(context, 'Bài 1 - Hello', const MyHomePage()),
-                  _item(context, 'Bài 2 - Calculate', const bt()),
-                  _item(context, 'Bài 3 - Màn hình di động', const ClassroomScreen()),
-                  _item(context, 'Bài 4 - plance', const MyPlace_1()),
-                  _item(context, 'Bài 5 - Đổi màu', const ChangeColorApp()),
-                  _item(context, 'Bài 6 - Counter', const CounterApp()),
-                  _item(context, 'Bài 7 - Form đăng ký', const RegisterForm()),
-                  _item(context, 'Bài 8 - Form đăng nhập', const MyWidget()),
-                  _item(context, 'Bài 9 - BMI', const BMIScreen()),
-                  _item(context, 'Bài 10 - Feedback', const FeedbackScreen()),
-                  _item(context, 'Bài 11 - Product', const MyProduct()),
-                  _item(context, 'Bài 12 - News API', const HomeScreen()),
-                  _item(context, 'Bài 13 - Login API', const MyWidget()),
+                  _item(context, 'Bài 1 - Hello', const MyHomePage(), Icons.home),
+                  _item(context, 'Bài 2 - Calculate', const bt(), Icons.calculate),
+                  _item(context, 'Bài 3 - Màn hình di động', const ClassroomScreen(), Icons.phone_android),
+                  _item(context, 'Bài 4 - Plance', const MyPlace_1(), Icons.place),
+                  _item(context, 'Bài 5 - Đổi màu', const ChangeColorApp(), Icons.color_lens),
+                  _item(context, 'Bài 6 - Counter', const CounterApp(), Icons.format_list_numbered),
+                  _item(context, 'Bài 7 - Form đăng ký', const RegisterForm(), Icons.app_registration),
+                  _item(context, 'Bài 8 - Form đăng nhập', const LoginForm(), Icons.login),
+                  _item(context, 'Bài 9 - BMI', const BMIScreen(), Icons.fitness_center),
+                  _item(context, 'Bài 10 - Feedback', const FeedbackScreen(), Icons.feedback),
+                  _item(context, 'Bài 11 - Product', const MyProduct(), Icons.shopping_cart),
+                  _item(context, 'Bài 12 - News API', const HomeScreen(), Icons.article),
+                  _item(context, 'Bài 13 - Login API', const MyWidget(), Icons.api),
                 ],
               ),
             ),
@@ -104,12 +104,13 @@ class DrawerHome extends StatelessWidget {
     );
   }
 
-  /// Item Drawer
-  ListTile _item(BuildContext context, String title, Widget page) {
+  /// Item Drawer với icon
+  ListTile _item(BuildContext context, String title, Widget page, IconData icon) {
     return ListTile(
+      leading: Icon(icon, color: Colors.blueAccent),
       title: Text(title),
       onTap: () {
-        Navigator.pop(context);
+        Navigator.pop(context); // đóng Drawer
         Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => page),
